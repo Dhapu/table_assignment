@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemical Data Table</title>
+
+  <!-- Include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+    <h1>Chemical Supplies</h1>
+
+    <!-- Toolbar with Icons -->
+    <div class="toolbar">
+      <i class="fa-solid fa-circle-plus" title="Add Row" onclick="addRow()" style="color: blue;"></i>
+      <i class="fa-solid fa-arrow-up" title="Move Row Up" onclick="moveRowUp()"></i>
+      <i class="fa-solid fa-arrow-down" title="Move Row Down" onclick="moveRowDown()"></i>
+      <i class="fa-solid fa-trash" title="Delete Row" onclick="deleteRow()" style="color: red;"></i>
+
+      <i class="fas fa-redo" title="Refresh Data" onclick="refreshData()" style="color: blue; rotate: 60deg;"></i>
+
+      <i class="fas fa-save" title="Save Data" onclick="saveData()" style="color: blue;"></i>
+    </div>
+</div>
+    <!-- Chemical Data Table -->
+    <table id="chemicalTable" class="table" cellspacing="1">
+      <thead>
+        <tr>
+          <th><i class="fa-solid fa-check" title="Edit" style="color: black;"></i></th>
+          <th onclick="sortTable(0)">ID</th>
+          <th onclick="sortTable(1)" class="border-combine">Chemical Name</th>
+          <th onclick="sortTable(2)" class="border-combine">Vendor</th>
+          <th onclick="sortTable(3)">Density </br>  </th>
+          <th onclick="sortTable(4)">Viscosity </br> </th>
+          <th onclick="sortTable(5)">Packaging</th>
+          <th onclick="sortTable(6)">Pack Size</th>
+          <th onclick="sortTable(7)">Unit</th>
+          <th onclick="sortTable(8)">Quantity</th>
+           <!-- Added header for Edit -->
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th class="border-combine"></th>
+          <th class="border-combine"></th>
+          <th><abbr style="font-size: 12px; font-weight: normal;">g/m<sup>3</sup></abbr></th>
+          <th><abbr style="font-size: 12px; font-weight: normal;">m<sup>2</sup>/s</abbr></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+      </thead>
+      <tbody id="tableBody">
+        <!-- Rows will be populated dynamically via JS -->
+        <!-- Example row for demonstration -->
+        <tr>
+          <td><i class="fa-solid fa-check" title="Edit" onclick="editRow(this)" style="color: grey;"></i></td>
+          <td>1</td>
+          <td class="border-combine">Acetic Acid</td>
+          <td class="border-combine">Vendor A</td>
+          <td class="density-column">1.05</td>
+          <td class="viscosity-column">1.2</td>
+          <td>Liquid</td>
+          <td>1 L</td>
+          <td>L</td>
+          <td>10</div></td>
+           <!-- Check icon for edit -->
+        </tr>
+        <!-- More rows will be added dynamically -->
+      </tbody>
+    </table>
+
+    <!-- Edit Modal -->
+    
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
