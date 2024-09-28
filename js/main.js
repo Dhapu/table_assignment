@@ -1,17 +1,17 @@
 let chemicals = [];
-let originalData = []; // To hold the original order of the data
+let originalData = []; 
 
 // Load the data from JSON file
 fetch('data.json')
   .then(response => response.json())
   .then(data => {
     chemicals = data;
-    originalData = JSON.parse(JSON.stringify(data)); // Store a copy of the original data
+    originalData = JSON.parse(JSON.stringify(data)); 
     populateTable();
   })
   .catch(error => console.error('Error loading data:', error));
 
-// Populate table with data
+
 function populateTable() {
   const tableBody = document.getElementById('tableBody');
   tableBody.innerHTML = '';
@@ -35,7 +35,7 @@ function populateTable() {
   });
 }
 
-// Sorting functionality
+
 let isAscending = true;
 function sortTable(columnIndex) {
   chemicals.sort((a, b) => {
@@ -47,71 +47,109 @@ function sortTable(columnIndex) {
   populateTable();
 }
 
+function moveRowDown() {
+  const tableBody = document.getElementById('tableBody');
+  const selectedRow = Array.from(tableBody.querySelectorAll('tr')).find(row => row.style.backgroundColor === "rgb(203, 195, 227)"); // Get the active row by checking the background color
 
-// Edit row functionality
-let activeRow = null; // Variable to track the currently active row
+  if (selectedRow) {
+      const nextRow = selectedRow.nextElementSibling; 
 
-// Edit row functionality
-function editRow(icon) {
-    const row = icon.closest("tr"); // Get the closest table row
-    const cells = row.querySelectorAll("td");
-
-    // If there is already an active row and it's not the current one, prevent editing
-    if (activeRow && activeRow !== row) {
-        alert("Please save the currently editing row before editing another.");
-        return;
-    }
-
-    // Toggle between editable and non-editable state
-    const isEditable = cells[1].isContentEditable;
-
-    // Set contenteditable to true or false based on current state
-    if (!isEditable) {
-        cells.forEach((cell, index) => {
-            if (index > 0) {
-                cell.contentEditable = true; // Make the row editable
-            }
-        });
-        activeRow = row; // Set the current row as active
-        row.style.backgroundColor = "#CBC3E3"; 
-        icon.style.color = "#0000FF";
-         // Highlight the row with a background color
-    } else {
-        alert("Row is already being edited.");
-    }
+      if (nextRow) {
+          
+          tableBody.insertBefore(nextRow, selectedRow);
+          tableBody.insertBefore(selectedRow, nextRow.nextElementSibling); 
+      } else {
+          alert("This row is already at the bottom.");
+      }
+  } else {
+      alert("Please select a row to move down.");
+  }
 }
 
-// Save data for the active row
+
+function moveRowUp() {
+  const tableBody = document.getElementById('tableBody');
+  const selectedRow = Array.from(tableBody.querySelectorAll('tr')).find(row => row.style.backgroundColor === "rgb(203, 195, 227)"); // Get the active row by checking the background color
+
+  if (selectedRow) {
+      const previousRow = selectedRow.previousElementSibling; 
+
+      if (previousRow) {
+          
+          tableBody.insertBefore(selectedRow, previousRow); 
+      } else {
+          alert("This row is already at the top.");
+      }
+  } else {
+      alert("Please select a row to move up.");
+  }
+}
+
+
+
+let activeRow = null; 
+
+
+function editRow(icon) {
+  const row = icon.closest("tr"); 
+  const cells = row.querySelectorAll("td");
+
+
+  if (activeRow && activeRow !== row) {
+      alert("Please save the currently editing row before editing another.");
+      return;
+  }
+
+
+  const isEditable = cells[1].isContentEditable;
+
+  
+  if (!isEditable) {
+      cells.forEach((cell, index) => {
+          if (index > 0) {
+              cell.contentEditable = true; 
+          }
+      });
+      activeRow = row; 
+      row.style.backgroundColor = "#CBC3E3"; 
+      icon.style.color = "#0000FF"; 
+  } else {
+      alert("Row is already being edited.");
+  }
+}
+
+
+
 function saveData() {
   if (activeRow) {
       const cells = activeRow.querySelectorAll("td");
 
-      // Save the content and disable editing
+      
       cells.forEach((cell, index) => {
           if (index > 0) {
-              cell.contentEditable = false; // Disable editing
+              cell.contentEditable = false;
           }
       });
 
-      // Reset background color and icon color
-      activeRow.style.backgroundColor = ""; // Reset background color
+  
+      activeRow.style.backgroundColor = ""; 
       const editIcon = activeRow.querySelector("i.fa-check");
-      editIcon.style.color = "grey"; // Change the edit icon color to grey (disabled)
+      editIcon.style.color = "grey";
 
-      activeRow = null; // Reset the active row
+      activeRow = null; 
       alert("Data saved successfully!");
   } else {
       alert("No row is being edited.");
   }
 }
 
-  // Refresh data functionality
+ 
 function refreshData() {
-    chemicals = JSON.parse(JSON.stringify(originalData)); // Reset chemicals to original data
-    populateTable(); // Repopulate table with original data
+    chemicals = JSON.parse(JSON.stringify(originalData)); 
+    populateTable(); 
   }
   
-  // Example functions for addRow, deleteRow, moveRowUp, moveRowDown, refreshData, saveData
+ 
   function addRow() {
     const tableBody = document.getElementById("tableBody");
     const newRow = document.createElement("tr");
@@ -133,14 +171,13 @@ function refreshData() {
   
   function deleteRow() {
     const tableBody = document.getElementById("tableBody");
-    const rows = tableBody.querySelectorAll('tr'); // Get all rows in the table
+    const rows = tableBody.querySelectorAll('tr'); 
   
     if (rows.length > 0) {
-      const lastRow = rows[rows.length - 1]; // Get the last row
-      tableBody.removeChild(lastRow); // Remove the last row
+      const lastRow = rows[rows.length - 1];
+      tableBody.removeChild(lastRow); 
     }
   }
   
-  
-  // Add more functionality as needed
+ 
   

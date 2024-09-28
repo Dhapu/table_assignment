@@ -18,11 +18,12 @@
     <!-- Toolbar with Icons -->
     <div class="toolbar">
       <i class="fa-solid fa-circle-plus" title="Add Row" onclick="addRow()" style="color: blue;"></i>
+      <i class="fa-solid fa-arrow-down" title="Move Row Down" onclick="moveRowDown()" style="color: blue;"></i>
       <i class="fa-solid fa-arrow-up" title="Move Row Up" onclick="moveRowUp()"></i>
-      <i class="fa-solid fa-arrow-down" title="Move Row Down" onclick="moveRowDown()"></i>
+      
       <i class="fa-solid fa-trash" title="Delete Row" onclick="deleteRow()" style="color: red;"></i>
 
-      <i class="fas fa-redo" title="Refresh Data" onclick="refreshData()" style="color: blue; rotate: 60deg;"></i>
+      <i class="fas fa-redo" title="Refresh Data" onclick="refreshData()" style="color: blue; rotate: 360deg;"></i>
 
       <i class="fas fa-save" title="Save Data" onclick="saveData()" style="color: blue;"></i>
     </div>
@@ -41,7 +42,7 @@
           <th onclick="sortTable(6)">Pack Size</th>
           <th onclick="sortTable(7)">Unit</th>
           <th onclick="sortTable(8)">Quantity</th>
-           <!-- Added header for Edit -->
+           
         </tr>
         <tr>
           <th></th>
@@ -58,26 +59,26 @@
 
       </thead>
       <tbody id="tableBody">
-        <!-- Rows will be populated dynamically via JS -->
-        <!-- Example row for demonstration -->
+       
+        
         <tr>
           <td><i class="fa-solid fa-check" title="Edit" onclick="editRow(this)" style="color: grey;"></i></td>
           <td>1</td>
-          <td class="border-combine">Acetic Acid</td>
-          <td class="border-combine">Vendor A</td>
-          <td class="density-column">1.05</td>
-          <td class="viscosity-column">1.2</td>
+          <td >Acetic Acid</td>
+          <td >Vendor A</td>
+          <td >1.05</td>
+          <td >1.2</td>
           <td>Liquid</td>
           <td>1 L</td>
           <td>L</td>
           <td>10</div></td>
-           <!-- Check icon for edit -->
+          
         </tr>
-        <!-- More rows will be added dynamically -->
+       
       </tbody>
     </table>
 
-    <!-- Edit Modal -->
+  
     
 
   </div>
