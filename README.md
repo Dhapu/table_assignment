@@ -8,7 +8,7 @@ This project is a web application that displays a table of chemical data, includ
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
+
 
 
 ## Demo
